@@ -12,9 +12,9 @@ app = Flask(__name__)
 # Since app.py and fraud_model.pkl are now both in the root folder
 try:
     model = joblib.load('fraud_model.pkl')
-    print("✅ Model loaded successfully!")
+    print("Model loaded successfully!")
 except FileNotFoundError:
-    print("❌ Error: 'fraud_model.pkl' not found in the current folder!")
+    print("Error: 'fraud_model.pkl' not found in the current folder!")
     print("Make sure you have run train_model.py first.")
     model = None
 
