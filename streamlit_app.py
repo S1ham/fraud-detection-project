@@ -4,7 +4,7 @@ import requests
 # ====================== PAGE CONFIG & GIRLY STYLE ======================
 st.set_page_config(
     page_title="PinkGuard AI",
-    page_icon="💖",
+    page_icon="",
     layout="wide"
 )
 
@@ -36,12 +36,12 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ====================== HEADER ======================
-st.markdown('<h1 class="main-header">💖 PinkGuard AI Fraud Detector</h1>', unsafe_allow_html=True)
-st.markdown("### *Protecting your transactions with love & smart AI* 🌸")
+st.markdown('<h1 class="main-header"> PinkGuard AI Fraud Detector</h1>', unsafe_allow_html=True)
+st.markdown("### *Protecting your transactions with love & smart AI* ")
 
 # ====================== SIDEBAR ======================
 with st.sidebar:
-    st.header("💕 How to Use")
+    st.header(" How to Use")
     st.write("""
     1. Choose a **sample transaction** below (recommended)
     2. Or manually type **Time** and **Amount**
@@ -53,13 +53,13 @@ with st.sidebar:
     st.caption("The 28 hidden features (V1–V28) are automatically set by the AI so you don’t have to worry about them 💖")
 
 # ====================== MAIN INPUTS ======================
-st.subheader("📌 Enter Transaction Details")
+st.subheader("Enter Transaction Details")
 
 col1, col2 = st.columns(2)
 
 with col1:
     time = st.number_input(
-        "⏰ Time (seconds since first transaction)",
+        "Time (seconds since first transaction)",
         min_value=0.0,
         value=10000.0,
         step=100.0,
@@ -68,7 +68,7 @@ with col1:
 
 with col2:
     amount = st.number_input(
-        "💰 Amount ($)",
+        "Amount (ZAR)",
         min_value=0.0,
         value=50.0,
         step=10.0,
@@ -76,19 +76,19 @@ with col2:
     )
 
 # ====================== SAMPLE BUTTONS (Automated) ======================
-st.subheader("🎀 Load Sample Transactions")
+st.subheader(" Load Sample Transactions")
 
 st.write("**Click one of these buttons** – it will automatically fill everything for you:")
 
 sample_col1, sample_col2 = st.columns(2)
 
 with sample_col1:
-    if st.button("💖 Everyday Safe Purchase", use_container_width=True):
+    if st.button("Everyday Safe Purchase", use_container_width=True):
         # Normal transaction
         st.session_state.features = [0.0] * 28 + [time, amount]
         st.session_state.features[28] = 12000.0   # realistic time
         st.session_state.features[29] = 42.50     # realistic amount
-        st.success("✅ Safe everyday purchase loaded! (Low risk)")
+        st.success("Safe everyday purchase loaded! (Low risk)")
 
 with sample_col2:
     if st.button("🚨 High-Risk Test Transaction", use_container_width=True):
@@ -96,7 +96,7 @@ with sample_col2:
         st.session_state.features = [0.0] * 28 + [time, amount]
         st.session_state.features[28] = 85000.0   # late time
         st.session_state.features[29] = 1899.99   # very high amount
-        st.warning("⚠️ High-risk example loaded!")
+        st.warning("High-risk example loaded!")
 
 # Show current values (optional)
 if st.checkbox("Show full 30 features (for advanced users)"):
@@ -104,7 +104,7 @@ if st.checkbox("Show full 30 features (for advanced users)"):
 
 # ====================== PREDICT BUTTON ======================
 if st.button("🔍 CHECK FOR FRAUD", type="primary", use_container_width=True):
-    with st.spinner("💖 Analyzing transaction with AI..."):
+    with st.spinner("Analyzing transaction with AI..."):
         try:
             # Prepare the 30 features (hidden ones are already set by samples)
             if 'features' not in st.session_state:
@@ -122,13 +122,13 @@ if st.button("🔍 CHECK FOR FRAUD", type="primary", use_container_width=True):
                 result = response.json()
                 prob = result.get("fraud_probability", 0)
 
-                st.subheader("✨ Prediction Result")
+                st.subheader("Prediction Result")
 
                 if result.get("prediction") == 1:
-                    st.error(f"🚨 **FRAUD DETECTED** 💔")
+                    st.error(f" **FRAUD DETECTED** ")
                     st.write(f"**Fraud Probability:** `{prob:.1%}`")
                 else:
-                    st.success(f"✅ **Safe & Legitimate** 💖")
+                    st.success(f"**Safe & Legitimate** ")
                     st.write(f"**Fraud Probability:** `{prob:.1%}`")
 
                 st.progress(prob)
@@ -136,8 +136,8 @@ if st.button("🔍 CHECK FOR FRAUD", type="primary", use_container_width=True):
                 st.error(f"API Error: {response.text}")
 
         except Exception as e:
-            st.error(f"💔 Cannot connect to the API. Make sure app.py is running!")
+            st.error(f" Cannot connect to the API. Make sure app.py is running!")
 
 # ====================== FOOTER ======================
 st.divider()
-st.markdown("Made with 💕 for beautiful & safe shopping | Streamlit + Flask + PinkGuard AI")
+st.markdown("Made with LOVE for beautiful & safe shopping | Streamlit + Flask + PinkGuard AI")
