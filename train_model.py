@@ -74,4 +74,4 @@ plt.show()
 
 # ====================== SAVE MODEL ======================
 joblib.dump(model, 'fraud_model.pkl')
-print("\n✅ Model trained and saved successfully as 'fraud_model.pkl'")
+print("\n Model trained and saved successfully as 'fraud_model.pkl'")
